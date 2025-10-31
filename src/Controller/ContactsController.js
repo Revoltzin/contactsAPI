@@ -1,0 +1,30 @@
+const ContactsRepository = require("../Repository/ContactsRepository.js");
+
+class ContactController {
+  async index(req, res) {
+    // Listar registros/Contatos
+    const contacts = await ContactsRepository.findAll();
+
+    res.json(contacts);
+  }
+
+  async show(req, res) {
+    const { id } = req.params;
+
+    const contact = await ContactsRepository.findById(id);
+
+    if (!contact) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(contact);
+  }
+
+  store() {}
+
+  update() {}
+
+  delete() {}
+}
+
+module.exports = new ContactController();

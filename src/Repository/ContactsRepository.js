@@ -16,3 +16,20 @@ let contacts = [
     category: uuid(),
   },
 ];
+
+class ContactController {
+  findAll() {
+    return new Promise((resolve) => {
+      resolve(contacts);
+    });
+  }
+
+  findById(id) {
+    return new Promise((resolve) => {
+      const contact = contacts.find((contact) => contact.id === id);
+      resolve(contact);
+    });
+  }
+}
+
+module.exports = new ContactController();
